@@ -1,29 +1,19 @@
-import { Accordion } from "@chakra-ui/react";
-import "./App.css";
+import { Box, useColorModeValue } from "@chakra-ui/react";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import CreatePage from "./pages/CreatePage";
+import Navbar from "./components/Navbar";
 
-const items = [
-  { value: "a", title: "First Item", text: "Some value 1..." },
-  { value: "b", title: "Second Item", text: "Some value 2..." },
-  { value: "c", title: "Third Item", text: "Some value 3..." },
-];
 
 function App() {
   return (
-    <>
-      <Accordion.Root collapsible defaultValue={["b"]}>
-        {items.map((item, index) => (
-          <Accordion.Item key={index} value={item.value}>
-            <Accordion.ItemTrigger>
-              <span flex="1">{item.title}</span>
-              <Accordion.ItemIndicator />
-            </Accordion.ItemTrigger>
-            <Accordion.ItemContent>
-              <Accordion.ItemBody>{item.text}</Accordion.ItemBody>
-            </Accordion.ItemContent>
-          </Accordion.Item>
-        ))}
-      </Accordion.Root>
-    </>
+    <Box minH={"100vh"} bg={useColorModeValue("gray.100", "gray.900")}>
+        <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/create" element={<CreatePage />} />
+      </Routes>
+    </Box> 
   );
 }
 
