@@ -5,13 +5,13 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function HomePage() {
-  const {fetchProducts, products} = useProductStore();
+  const { fetchProducts, products } = useProductStore();
 
-  useEffect(() => { // CARI TAU INI APAAA
+  useEffect(() => {
     fetchProducts();
-  },[fetchProducts]);
+  }, [fetchProducts]); //fungsi useEffect: biar fetchingnya baru mulai saat komponen HomePage ini dibuka
 
-  console.log("products", products)
+  console.log("products", products);
 
   return (
     <Container maxW="container.xl" py={12}>
@@ -26,29 +26,35 @@ function HomePage() {
           Current Products 🚀
         </Text>
 
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10} width="full">
-          {products.map((product)=> (
+        <SimpleGrid
+          columns={{ base: 1, md: 2, lg: 3 }}
+          spacing={10}
+          width="full"
+        >
+          {products.map((product) => ( //parameter product mewakilkan 1 product
             <ProductCard key={product._id} product={product} />
           ))}
         </SimpleGrid>
 
-        <Text
-          fontSize="xl"
-          textAlign={"center"}
-          fontWeight="bold"
-          color="gray.500"
-        >
-          No products found 😢{" "}
-          <Link to={"/create"}>
-            <Text
-              as="span"
-              color="blue.500"
-              _hover={{ textDecoration: "underline" }}
-            >
-              Create a product
-            </Text>
-          </Link>
-        </Text>
+        {products.length === 0 && ( //kalau array productnya 0 then ini yg muncul
+          <Text
+            fontSize="xl"
+            textAlign={"center"}
+            fontWeight="bold"
+            color="gray.500"
+          >
+            No products found 😢{" "}
+            <Link to={"/create"}>
+              <Text
+                as="span"
+                color="blue.500"
+                _hover={{ textDecoration: "underline" }}
+              >
+                Create a product
+              </Text>
+            </Link>
+          </Text>
+        )}
       </VStack>
     </Container>
   );
