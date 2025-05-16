@@ -1,7 +1,9 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 
 function ProductCard({ product }) {
+  const bg = useColorModeValue("white", "gray.800");
+
   return (
     <Box
       shadow="lg"

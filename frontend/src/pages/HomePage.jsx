@@ -1,3 +1,4 @@
+import ProductCard from "@/components/ProductCard";
 import { useProductStore } from "@/store/product";
 import { Container, SimpleGrid, Text, VStack } from "@chakra-ui/react";
 import React, { useEffect } from "react";
