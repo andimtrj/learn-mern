@@ -41,6 +41,11 @@ export const useProductStore = create((set) => ({
   },
 
   updateProduct: async (pid, updatedProduct) => {
+    if (!pid) {
+      console.error("Error: pid is undefined/null!");
+      return { success: false, message: "Invalid product ID" };
+    }
+
     const res = await fetch(`/api/products/${pid}`, {
       method: "PUT",
       headers: {
